@@ -1,0 +1,13 @@
+
+.bigBlock {
+    height: 750px;
+    width: 80%;
+    background-color: bisque;
+}
+
+.img {
+    height: 300px;
+    width: 60%;
+    background-color: rgb(49, 49, 49);
+    color: white;
+}

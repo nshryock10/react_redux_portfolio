@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -35,4 +36,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.header {
+  min-height: 75px;
+}
+
+nav h1, nav h3{
+  display: inline-block;
+  color: red;
+}
+nav h1 {
+  position: relative;
+  float: left;
+  margin-left: 50px;
+}
+
+.drop-down {
+  position: relative;
+  float: right;
+  margin-right: 75px;
+  min-width: 200px;
+  z-index: 2;
+}
+
+.drop-down-content {
+  display: none;
+  background-color: rgb(196, 196, 196);
+  color: black;
+}
+
+.drop-down-content p:hover {
+  color: red;
+}
+
+.drop-down:hover .drop-down-content{
+  display: block;
+}
+
+
+.blockContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: aquamarine;
+  padding: 15px;
+  width: 80%;
 }

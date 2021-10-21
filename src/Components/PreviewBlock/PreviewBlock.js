@@ -1,21 +1,27 @@
 import React from 'react';
 import './PreviewBlock.css';
+import { useDispatch } from 'react-redux';
+import { setBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
 
 export default function PreviewBlock (props) {
+    const dispatch = useDispatch();
+    
+    //Sets size to large and translates block info to expanded component
+    const handleClick = () => {
+        dispatch(setSize('large'));
+        dispatch(setBigBlockInfo({
+            //Need to rename once API is incorporated
+            title: props.title,
+            img: props.img,
+            body: props.body
+        }))
+    }
+
     return (
-        <div>
-            <div className="blockBox"
-            onClick={props.expandBlock}>
-                <h2>Preview Title</h2>
-                <p>IMG</p>
-                <p>Preview desc.</p>
-            </div>
-            <div className="blockBox">
-                <h2>Preview Title 2</h2>
-                <p>IMG</p>
-                <p>Preview desc.</p>
-            </div>
-        </div>
-        
+        <div className="blockBox" onClick={handleClick}>
+            <h2>{props.title}</h2>
+            <p>{props.img}</p>
+            <p>{props.description}</p>
+        </div>        
     );
 }

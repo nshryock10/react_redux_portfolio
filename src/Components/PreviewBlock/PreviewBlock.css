@@ -1,7 +1,9 @@
 .blockBox {
+    position: relative;
+    display: inline-block;
     border: black 2px solid;
     width: 300px;
     height: 300px;
-    margin: 20px;
-    display: inline-block;
-}
+    margin: 10px;
+    background-color: white;
+} 

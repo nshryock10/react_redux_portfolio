@@ -1,11 +1,24 @@
 
 .bigBlock {
+    position: relative;
+    margin: 0 auto;
     height: 750px;
-    width: 80%;
+    width: 60%;
     background-color: bisque;
 }
 
+.bigBlockContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.308);
+    width: 100%;
+    z-index: 4;
+}
+
 .img {
+    position: relative;
+    margin: 0 auto;
     height: 300px;
     width: 60%;
     background-color: rgb(49, 49, 49);

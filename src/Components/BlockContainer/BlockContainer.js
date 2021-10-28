@@ -12,13 +12,8 @@ export default function BlockContainer (props) {
         return (
             <div >
                 <PreviewBlock
-                    expandBlock={props.expandBlock}
-                    setViewerBlock={props.setViewerBlock}
-                    key={result.key}
-                    title={result.title} 
-                    img={result.img} 
-                    description={result.description}
-                    body ={result.body} />
+                    key={result.id}
+                    result={result} />
             </div>
         )}
     )

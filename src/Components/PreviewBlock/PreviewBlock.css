@@ -7,3 +7,12 @@
     margin: 10px;
     background-color: white;
 } 
+
+.blockBox h2{
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+    max-height: 42px;
+    font-size: 16px;
+}

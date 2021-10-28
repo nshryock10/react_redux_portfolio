@@ -4,21 +4,19 @@ const searchBarSlice = createSlice({
     name: 'searchBar',
     initialState: {
         searchResults: [],
-        searchTerm: ''
+        searchTerm: '',
+        searchType: 'general'
     },
     reducers: {
         setSearchResults: (state, action) => {
             const searchResults = action.payload;
+
             //clear search results on new search
             state.searchResults = [];
+            
             //Map results from API
-            searchResults.forEach( result => state.searchResults.push({
-                    //Need to rename variables once reddit API is plugged in
-                    key: result.key, 
-                    title: result.title,
-                    img: result.img,
-                    body: result.body
-                })
+            console.log(searchResults);
+            searchResults.forEach( result => state.searchResults.push(result)
             )
         },
         clearSearchResults: (state, action) => {
@@ -26,7 +24,9 @@ const searchBarSlice = createSlice({
         },
         setSearchTerm: (state, action) => {
             state.searchTerm = action.payload;
-            alert(state.searchTerm);
+        },
+        setSearchType: (state, action) => {
+            state.searchType = action.payload;
         }
     }
 });
@@ -34,6 +34,7 @@ const searchBarSlice = createSlice({
 //Define selectors
 export const selectSearchResults = state => state.searchBar.searchResults;
 export const selectSearchTerm = state => state.searchBar.searchTerm;
+export const selectSearchType = state => state.searchBar.searchType;
 
-export const { setSearchResults, setSearchTerm } = searchBarSlice.actions;
+export const { setSearchResults, setSearchTerm, setSearchType } = searchBarSlice.actions;
 export default searchBarSlice.reducer;

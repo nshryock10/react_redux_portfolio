@@ -16,7 +16,7 @@ export default function ExpandedBlock(props) {
             <div className="bigBlock">
                 <button onClick={handleClose}>Close</button>
                 <h2>{title}</h2>
-                <p className="img">{img}</p>
+                <img className="img"src={img} alt="reddit"/>
                 <p>{body}</p>
             </div>
         </div>

@@ -12,25 +12,22 @@ export default function PreviewBlock (props) {
         dispatch(setBigBlockInfo({
             //Need to rename once API is incorporated
             title: props.result.title,
-            img: props.result.img,
+            thumbnail: props.result.thumbnail,
             body: props.result.body
         }))
     }
     const changeMediaType = result => {
-        if(result.media === null) {
-            if(result.img === 'self'){
-                return;
-            }
-        }else if (result.img !=='self') {
-            return (<img src={result.img} alt="reddit" />)
+        if(result.media === null && (result.thumbnail === 'self' || result.thumbnail === '')) {
+            return;
+        }else if (result.thumbnail !== 'self' && result.thumbnail !== '') {
+            return (<img src={result.thumbnail} alt="reddit" />)
         }else if (result.media.oembed) {
-            console.log(result.media.oembed.html);
-           const resultHTML = result.media.oembed.html;
+           //const resultHTML = result.media.oembed.html;
            //console.log(resultHTML);
-           return (<div dangerouslySetInnerHTML={{__html: resultHTML}}></div>);
+           //<div dangerouslySetInnerHTML={{__html: resultHTML}}></div>
+           return (<iframe src={result.media.oembed.url} title={result.id}></iframe>);
         }
         else{
-            console.log(result.media);
             return (<video src={result.media.reddit_video.hls_url} ></video>);
         }//
         

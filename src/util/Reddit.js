@@ -1,8 +1,8 @@
 //Import all necessary plugins;
 
 const urlG = 'http://www.reddit.com/r/all/search.json?q=';
-const urlR = 'http://www.reddit.com/r/';
-const urlU = 'http://www.reddit.com/r/all/search.json?q=';
+const urlR = 'https://www.reddit.com/r/';
+const urlU = 'https://www.reddit.com/user/';
 //const url2 = 'https://www.reddit.com/dev/api#GET_search/r/';
 //const redirect_uri = '';
 
@@ -22,43 +22,35 @@ const Reddit = {
 
     getSearchResults(searchTerm, searchType) {
         //accessToken = Spotify.getAccessToken();
-        let url;        
+        let endpoint;        
         //Switch url endpoint based on drop down
         switch(searchType) {
             case 'general':
-                url = urlG;
+                endpoint = `${urlG}${searchTerm}`;
                 break;
             case 'subreddit':
-                url = urlR;
+                endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
                 break;
             case 'user':
-                url = urlU;
+                endpoint = `${urlU}${searchTerm}/hot.json?limit=100`;
                 break;
             default:
-                url = urlG;
+                endpoint = `${urlG}${searchTerm}`;
                 break;
         }
 
-        return fetch(`${url}${searchTerm}`)
+        return fetch(endpoint)
         .then(response => {
             return response.json()
         }).then(jsonResponse => {
             //console.log(jsonResponse.data.children[3].data.media);
             return jsonResponse.data.children.map(
-                result => ({
+                result =>( {
                     id: result.data.id,
                     title: result.data.title,
-                    img: result.data.thumbnail,
-                    media: result.data.media,
-                    subreddit: result.data.subreddit
+                    thumbnail: result.data.thumbnail,
+                    media: result.data.media
                 }));
-            /*return jsonResponse.tracks.items.map(track => ({
-                id: track.id,
-                name: track.name,
-                artist: track.artists[0].name,
-                album: track.album.name,
-                uri: track.uri
-                }))*/
         });        
     }
 };

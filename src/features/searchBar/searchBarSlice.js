@@ -13,7 +13,7 @@ const searchBarSlice = createSlice({
 
             //clear search results on new search
             state.searchResults = [];
-            
+
             //Map results from API
             console.log(searchResults);
             searchResults.forEach( result => state.searchResults.push(result)
@@ -24,9 +24,6 @@ const searchBarSlice = createSlice({
         },
         setSearchTerm: (state, action) => {
             state.searchTerm = action.payload;
-        },
-        setSearchType: (state, action) => {
-            state.searchType = action.payload;
         }
     }
 });
@@ -34,7 +31,6 @@ const searchBarSlice = createSlice({
 //Define selectors
 export const selectSearchResults = state => state.searchBar.searchResults;
 export const selectSearchTerm = state => state.searchBar.searchTerm;
-export const selectSearchType = state => state.searchBar.searchType;
 
-export const { setSearchResults, setSearchTerm, setSearchType } = searchBarSlice.actions;
+export const { setSearchResults, setSearchTerm } = searchBarSlice.actions;
 export default searchBarSlice.reducer;

@@ -32,25 +32,29 @@ const Reddit = {
                 endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
                 break;
             case 'user':
-                endpoint = `${urlU}${searchTerm}/hot.json?limit=100`;
+                endpoint = `${urlU}${searchTerm}/hot.json`;
                 break;
             default:
                 endpoint = `${urlG}${searchTerm}`;
                 break;
         }
 
+        /*author: result.data.author,
+                    id: result.data.id,
+                    img: result.data.preview.images[0],
+                    isVideo: result.data.is_video,
+                    media: result.data.media,
+                    subreddit: result.data.subreddit,
+                    secureMedia: result.data.secure_media,
+                    thumbnail: result.data.thumbnail,
+                    title: result.data.title*/
+
         return fetch(endpoint)
         .then(response => {
             return response.json()
         }).then(jsonResponse => {
-            //console.log(jsonResponse.data.children[3].data.media);
             return jsonResponse.data.children.map(
-                result =>( {
-                    id: result.data.id,
-                    title: result.data.title,
-                    thumbnail: result.data.thumbnail,
-                    media: result.data.media
-                }));
+                result =>( { data: result.data }));
         });        
     }
 };

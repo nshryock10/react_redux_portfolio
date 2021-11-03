@@ -8,7 +8,26 @@
     background-color: white;
 } 
 
-.blockBox h2{
+/*.blockBox h2{
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+    max-height: 42px;
+    font-size: 16px;
+}*/
+
+.noImgTitle {
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+    max-height: 192px;
+    padding: 20px 0;
+    font-size: 16px;
+}
+
+.imgTitle {
     white-space: wrap;
     overflow: hidden;
     text-overflow: ellipsis;

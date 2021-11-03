@@ -11,11 +11,8 @@ const blocksSlice = createSlice({
             state.blockSize = action.payload;
         },
         setBigBlockInfo: (state, action) => {
-            const {title, img, body} = action.payload;
             state.bigBlockInfo = {
-                title: title,
-                img: img,
-                body: body
+                data: action.payload.data
             }
         },
         setSearchResults: (state, action) => {
@@ -23,10 +20,7 @@ const blocksSlice = createSlice({
             state.searchResults = searchResults.forEach( result => {
                 return({
                     //Need to rename variables once reddit API is plugged in
-                    key: result.key, 
-                    title: result.title,
-                    img: result.img,
-                    body: result.body
+                    data: action.payload
                 })
             })
         }

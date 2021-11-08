@@ -17,13 +17,13 @@ export default function PreviewBlock (props) {
         if(result.data.media === null && (result.data.thumbnail === 'self' || result.data.thumbnail === '')) {
             return;
         }else if (result.data.thumbnail !== 'self' && result.data.thumbnail !== '') {
-            return (<img src={result.data.thumbnail} alt="reddit" />)
+            return (<img src={result.data.thumbnail} alt="reddit" onError={(e) => e.target.style.display = "none"} />)
         }
         
     }
     
     return (
-        <div className="blockBox" onClick={handleClick}>
+        <div className="blockBox" onClick={handleClick} id={props.result.data.id}>
             {(props.result.data.thumbnail != 'http') && <h2 className='noImgTitle' >{props.result.data.title}</h2>}
             {(props.result.data.thumbnail == 'http') && <h2 className='imgTitle' >{props.result.data.title}</h2>}
             <div>{changeMediaType(props.result) }</div>

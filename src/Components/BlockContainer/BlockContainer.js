@@ -12,7 +12,7 @@ export default function BlockContainer (props) {
         return (
             <div >
                 <PreviewBlock
-                    key={result.id}
+                    key={result.data.id}
                     result={result} />
             </div>
         )}

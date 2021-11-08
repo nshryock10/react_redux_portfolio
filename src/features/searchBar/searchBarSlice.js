@@ -9,8 +9,9 @@ const searchBarSlice = createSlice({
     },
     reducers: {
         setSearchResults: (state, action) => {
-            const searchResults = action.payload;
-
+            
+                const searchResults = action.payload;
+           
             //clear search results on new search
             state.searchResults = [];
 
@@ -23,7 +24,12 @@ const searchBarSlice = createSlice({
             state.searchBar.searchResults = [];
         },
         setSearchTerm: (state, action) => {
-            state.searchTerm = action.payload;
+            let searchTerm;
+            if (/\s/.test(action.payload)){
+                searchTerm = action.payload.replace(/\s/g, '');
+            }else{
+                state.searchTerm = action.payload;
+            }
         }
     }
 });

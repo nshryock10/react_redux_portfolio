@@ -2,9 +2,10 @@
 .bigBlock {
     position: relative;
     margin: 0 auto;
-    height: 750px;
+    min-height: 750px;
     width: 60%;
     background-color: bisque;
+    overflow: scroll;
 }
 
 .bigBlockContainer {

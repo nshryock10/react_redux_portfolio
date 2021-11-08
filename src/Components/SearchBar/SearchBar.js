@@ -11,7 +11,7 @@ export default function SearchBar() {
     
     const handleClick = (e) => {
         e.preventDefault();
-        
+        //Reddit.getAccessToken();
         Reddit.getSearchResults(searchTerm, searchType).then( results => dispatch(setSearchResults(Object.values(results))));
     }
     /**/

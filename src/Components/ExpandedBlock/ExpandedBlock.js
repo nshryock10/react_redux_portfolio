@@ -2,7 +2,7 @@ import React from 'react';
 import './ExpandedBlock.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
-import { decode } from '../../utils/utils';
+import { decode, getVideoURL } from '../../utils/utils';
 
 
 export default function ExpandedBlock(props) {
@@ -15,7 +15,7 @@ export default function ExpandedBlock(props) {
         dispatch(setSize('small'));
     }
 
-    const changeMedia = block => {
+   /* const changeMedia = block => {
         if(block.post_hint === 'image' && 
             block.preview && 
             !block.preview.reddit_video_preview){
@@ -38,7 +38,7 @@ export default function ExpandedBlock(props) {
         else {
             return <div><p>no media</p></div>
         }
-    }
+    } */
 
     //{changeMedia(data.data)}
 
@@ -47,21 +47,27 @@ export default function ExpandedBlock(props) {
             <div className="bigBlock">
                 <button onClick={handleClose}>Close</button>
                 <h2>{data.data.title}</h2>
+                <span>
+                    <h3 className="post-info user">{post.author}</h3>
+                    <h3 className="post-info reddit">{post.subreddit}</h3>
+                </span>
                 <div className='content-container'>
 
                 {//Post content link
                     post.post_hint !=='link' && 
                     !post.is_self && 
                     !post.domain.includes('redd.it') &&
-                   
-                    <a 
-                        className="content-link" 
-                        href={post.url} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                    >
-                        See post content
-                    </a>
+                   <div>
+                        <a 
+                            className="content-link" 
+                            href={post.url} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                        >
+                            See post content
+                        </a>
+                        <br></br>
+                    </div>
                 }
 
                 {//Post Image
@@ -88,14 +94,16 @@ export default function ExpandedBlock(props) {
 
                 {//Post link
                     post.post_hint === 'link' &&
-                    <a 
-                        className="content-link"
-                        href={post.url}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        {post.url}
-                    </a>
+                    <div>
+                        <a 
+                            className="content-link"
+                            href={post.url}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {post.url}
+                        </a>
+                    </div>
                 }
 
                 {//Post Video
@@ -108,9 +116,10 @@ export default function ExpandedBlock(props) {
                                 className="video"
                                 url={post.media.reddit_video.hls_url}
                                 controls
-                                autoPlay
+                                autoPlay={true}
                                 loop
                             ></video>
+                            <a href={post.url}>{post.url}</a>
                         </div>
                     )}
                 
@@ -137,6 +146,19 @@ export default function ExpandedBlock(props) {
                         className="img"
                         dangerouslySetInnerHTML={{__html: decode(post.selftext_html) }}
                     ></div>
+                }
+
+                {//Youtube video
+                    <div className="youtube-container" >
+                        <iframe
+                            src={getVideoURL(post.url)}
+                            title="youtube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            load="lazy"
+                        ></iframe>
+                    </div>
                 }
 
                 </div>

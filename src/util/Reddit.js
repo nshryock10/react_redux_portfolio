@@ -49,28 +49,8 @@ const Reddit = {
         
     },
 
-    //Search Reddit via API
-    searchReddit(searchTerm, searchType, filterType) {
-        const accessToken = Reddit.getAccessToken();
-
-        //Change search type basedon search type drop down
-        let searchEndpoint;
-        switch(searchType) {
-            case 'general':
-                searchEndpoint = `r/all/search?q=${searchTerm}?limit=100`;
-                break;
-            case 'subreddit':
-                searchEndpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
-                break;
-            case 'user':
-                searchEndpoint = `${urlU}${searchTerm}/hot.json`;
-                break;
-            default:
-                searchEndpoint = `${urlG}${searchTerm}`;
-                break;
-        }
-
-        return fetch(`https://${authEndPointDomain}/api/v1/`)
+    getPostComments(searchTerm, id) {
+        return fetch(`${urlR}${searchTerm}/comments/${id}.json`)
     },
 
     getSearchResults(searchTerm, searchType) {

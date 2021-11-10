@@ -2,7 +2,7 @@
 .bigBlock {
     position: relative;
     margin: 0 auto;
-    min-height: 750px;
+    min-height: 650px;
     width: 60%;
     background-color: bisque;
     overflow: scroll;

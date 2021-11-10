@@ -27,7 +27,7 @@ export default function PreviewBlock (props) {
             {(props.result.data.thumbnail != 'http') && <h2 className='noImgTitle' >{props.result.data.title}</h2>}
             {(props.result.data.thumbnail == 'http') && <h2 className='imgTitle' >{props.result.data.title}</h2>}
             <div>{changeMediaType(props.result) }</div>
-            <span><h3 className='author'>{props.result.data.author}</h3><h3 className='subreddit'>{props.result.data.subreddit}</h3></span>
+            <span><h3 className='author'>u/{props.result.data.author}</h3><h3 className='subreddit'>r/{props.result.data.subreddit}</h3></span>
         </div>        
     );
 }

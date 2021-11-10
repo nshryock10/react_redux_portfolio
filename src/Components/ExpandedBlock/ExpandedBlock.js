@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Icon from 'react-bootstrap-icons';
 import './ExpandedBlock.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
@@ -15,42 +16,23 @@ export default function ExpandedBlock(props) {
         dispatch(setSize('small'));
     }
 
-   /* const changeMedia = block => {
-        if(block.post_hint === 'image' && 
-            block.preview && 
-            !block.preview.reddit_video_preview){
-
-            return <img className="img" src={block.url} alt="" />
-
-        }else if (block.post_hint !=='link' && 
-                    !block.is_self && 
-                    !block.domain.includes('redd.it')){
-
-            return <a className="content-link" href={block.url} target="_blank" >See post content</a>
-
-        }else if(block.thumbnail !== 'self' && block.thumbnail !== '') {
-             return <video className="img"
-                    src={block.media.reddit_video.fallback_url} 
-                    alt="reddit"
-                    controls
-                    autoPlay/>
-        }
-        else {
-            return <div><p>no media</p></div>
-        }
-    } */
-
-    //{changeMedia(data.data)}
-
     return (
         <div className="bigBlockContainer">
             <div className="bigBlock">
                 <button onClick={handleClose}>Close</button>
                 <h2>{data.data.title}</h2>
                 <span>
-                    <h3 className="post-info user">{post.author}</h3>
-                    <h3 className="post-info reddit">{post.subreddit}</h3>
+                    <h3 className="post-info user">u/{post.author}</h3>
+                    <h3 className="post-info reddit">r/{post.subreddit}</h3>
                 </span>
+                <div className="vote-container" >
+                   <Icon.ChevronUp />
+                    <p>{post.ups}</p>
+                    <Icon.ChevronDown />
+                    <p>{post.downs}</p> 
+                </div>
+                
+                <i className="bi bi-chevron-down icon vote-down"></i>
                 <div className='content-container'>
 
                 {//Post content link
@@ -162,7 +144,6 @@ export default function ExpandedBlock(props) {
                 }
 
                 </div>
-                <p>{data.data.selftext}</p>
             </div>
         </div>
         

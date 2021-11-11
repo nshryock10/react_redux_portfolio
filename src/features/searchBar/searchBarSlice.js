@@ -24,9 +24,8 @@ const searchBarSlice = createSlice({
             state.searchBar.searchResults = [];
         },
         setSearchTerm: (state, action) => {
-            let searchTerm;
             if (/\s/.test(action.payload)){
-                searchTerm = action.payload.replace(/\s/g, '');
+                state.searchTerm = action.payload.replace(/\s/g, '');
             }else{
                 state.searchTerm = action.payload;
             }

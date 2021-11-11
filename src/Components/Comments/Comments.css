@@ -1,0 +1,10 @@
+.comment {
+    border-left: solid 1px red;
+    text-align: left;
+    margin-left: 0.75rem;
+}
+
+.comments-container > .comment {
+    margin-left: 1.25rem;
+    border-left: 1px purple solid;
+}

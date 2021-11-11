@@ -50,7 +50,16 @@ const Reddit = {
     },
 
     getPostComments(searchTerm, id) {
-        return fetch(`${urlR}${searchTerm}/comments/${id}.json`)
+        return fetch(`${urlR}${searchTerm}/comments/${id}.json`).then(response => {
+            return response.json()
+        }).then(jsonResponse => {
+            return jsonResponse; }).then(jsonData =>{
+                if(jsonData[1].data.children.length > 0){
+                    return jsonData[1].data.children;
+                }else {
+                    return null;
+                }
+            })
     },
 
     getSearchResults(searchTerm, searchType) {

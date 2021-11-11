@@ -8,15 +8,11 @@
     background-color: white;
 } 
 
-/*.blockBox h2{
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100ch;
-    max-height: 42px;
-    font-size: 16px;
-}*/
-
+.content-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
 .noImgTitle {
     white-space: wrap;
     overflow: hidden;
@@ -34,4 +30,18 @@
     max-width: 100ch;
     max-height: 42px;
     font-size: 16px;
+}
+
+.img-small{
+    height: auto;
+    max-width: 250px;
+}
+.video-container {
+    height: auto;
+    max-width: 250px;
+}
+
+.youtube-container {
+    height: auto;
+    max-width: 250px;
 }

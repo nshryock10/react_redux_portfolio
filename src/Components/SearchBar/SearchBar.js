@@ -1,6 +1,6 @@
 import React from "react";
 import { setSearchResults } from "../../features/searchBar/searchBarSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from 'react';
 import Reddit from '../../util/Reddit';
 
@@ -19,13 +19,14 @@ export default function SearchBar() {
         <div>
             <h3>Search Reddit</h3>
             <form onSubmit={handleClick} > 
+                <select name="searchType" id="searchType" onChange={(e) => setSearchType(e.currentTarget.value)}>
+                  <option value="subreddit">r/</option>
+                  <option value="user">u/</option>
+                  <option value="general">all</option>
+                </select>
                 <input onChange={(e) => setSearchTerm(e.currentTarget.value)}></input>
                 <button >Submit</button>
-                <select name="searchType" id="searchType" onChange={(e) => setSearchType(e.currentTarget.value)}>
-                  <option value="general">General</option>
-                  <option value="subreddit">Subreddit</option>
-                  <option value="user">User</option>
-                </select>
+                
             </form>
         </div>
     )

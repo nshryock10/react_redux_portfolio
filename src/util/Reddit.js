@@ -1,6 +1,6 @@
 //Import all necessary plugins;
 
-const urlG = 'http://www.reddit.com/r/all/search.json?q='; //general search
+const urlG = 'http://www.reddit.com/'; //general search
 const urlR = 'https://www.reddit.com/r/'; //search for specific subreddit
 const urlU = 'https://www.reddit.com/user/'; //search for specific user
 //const url2 = 'https://www.reddit.com/dev/api#GET_search/r/';
@@ -19,35 +19,7 @@ const scope = 'read';
 let filterType = 'hot';
 
 //Get access token
-const Reddit = {    
-    getAccessToken () {
-        //Check if access token is already available
-        if(accessToken){
-            return accessToken;
-        }else {
-
-            //***Use /api/v1/authorize.compact?  for mobile screens */
-
-            //If no access token send user to authorization link
-            const authUrl2 = `https://www.reddit.com/api/v1/authorize?client_id=${client_id}&response_type=code&state=${state}&redirect_uri=${redirect_uri}/duration=permanent&scope=read`;
-            const authUrl = `https://${endPointDomain}/api/v1/authorize?
-            client_id=${client_id}
-            &response_type=code
-            &state=${state}
-            &redirect_uri=${redirect_uri}
-            &duration=permanent
-            $scope=${scope}`;
-
-            window.location = authUrl2;
-            //Get code from uri
-            const params = (new URL(window.location)).searchParams;
-            accessToken = params.get("code") ? params.get("code") : false;
-
-            return accessToken;
-        }
-        
-        
-    },
+const Reddit = {
 
     getPostComments(searchTerm, id) {
         return fetch(`${urlR}${searchTerm}/comments/${id}.json`).then(response => {
@@ -65,26 +37,30 @@ const Reddit = {
     getSearchResults(searchTerm, searchType) {
         //accessToken = Spotify.getAccessToken();
         let endpoint;        
+        searchType = 'hot';
         //Switch url endpoint based on drop down
         switch(searchType) {
             case 'general':
-                endpoint = `${urlG}${searchTerm}`;
+                endpoint = `${urlG}${searchTerm}/search.json?q=${searchTerm}&type=link=`;
                 break;
             case 'subreddit':
-                endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
+                endpoint = `${urlR}${searchTerm}/hot.json?limit=100?`;
                 break;
             case 'user':
                 endpoint = `${urlU}${searchTerm}/hot.json`;
                 break;
             default:
-                endpoint = `${urlG}${searchTerm}`;
+                endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
                 break;
         }
+
+
 
         return fetch(endpoint)
         .then(response => {
             return response.json()
         }).then(jsonResponse => {
+            
             return jsonResponse.data.children.map(
                 result =>( { data: result.data }));
         });        

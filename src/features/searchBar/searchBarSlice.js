@@ -5,12 +5,12 @@ const searchBarSlice = createSlice({
     initialState: {
         searchResults: [],
         searchTerm: '',
-        searchType: 'general'
+        searchType: 'subreddit'
     },
     reducers: {
         setSearchResults: (state, action) => {
             
-                const searchResults = action.payload;
+            const searchResults = action.payload;
            
             //clear search results on new search
             state.searchResults = [];
@@ -26,6 +26,7 @@ const searchBarSlice = createSlice({
         setSearchTerm: (state, action) => {
             if (/\s/.test(action.payload)){
                 state.searchTerm = action.payload.replace(/\s/g, '');
+                console.log(state.searchTerm)
             }else{
                 state.searchTerm = action.payload;
             }

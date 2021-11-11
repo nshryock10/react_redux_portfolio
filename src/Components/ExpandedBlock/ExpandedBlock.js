@@ -137,7 +137,7 @@ export default function ExpandedBlock(props) {
                         post.media_embed.content &&
                         <div
                             className="img"
-                            dangerouslySetInnerHTML={{__html: decode(post.selftext_html) }}
+                            dangerouslySetInnerHTML={{__html: decode(post.media_embed.content) }}
                         ></div>
                     }
 

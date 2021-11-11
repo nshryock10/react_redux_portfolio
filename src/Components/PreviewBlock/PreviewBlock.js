@@ -6,25 +6,14 @@ import { getVideoURL } from '../../utils/utils';
 
 export default function PreviewBlock (props) {
     const dispatch = useDispatch();
-    
-    //Sets size to large and translates block info to expanded component
+    const post = props.result.data;
+
+    //Sets size to 'large' and translates block info to expanded component
     const handleClick = () => {
         dispatch(setSize('large'));
-        dispatch(setBigBlockInfo({
-            //Need to rename once API is incorporated
-            data: props.result.data }))
-    }
-    const changeMediaType = result => {
-        if(result.data.media === null && (result.data.thumbnail === 'self' || result.data.thumbnail === '')) {
-            return;
-        }else if (result.data.thumbnail !== 'self' && result.data.thumbnail !== '') {
-            return (<img src={result.data.thumbnail} alt="reddit" onError={(e) => e.target.style.display = "none"} />)
-        }
-        
+        dispatch(setBigBlockInfo({data: props.result.data }))
     }
 
-    const post = props.result.data;
-    
     return (
         <div className="blockBox" onClick={handleClick} id={post.id}>
             {(post.thumbnail != 'http') && <h2 className='noImgTitle' >{post.title}</h2>}
@@ -32,13 +21,13 @@ export default function PreviewBlock (props) {
             <div className='content-container'>
 
                 {//Post thumbnail
-                    props.result.data.post_hint === 'image' &&      
-                    props.result.data.preview && 
-                    !props.result.data.preview.reddit_video_preview &&
+                   post.post_hint === 'image' &&      
+                   post.preview && 
+                   !post.preview.reddit_video_preview &&
                     
                     <img 
                         className="img-small" 
-                        src={props.result.data.thumbnail} 
+                        src={post.url} 
                         alt=""
                     />
                 }

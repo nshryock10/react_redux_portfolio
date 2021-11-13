@@ -5,10 +5,12 @@ import ExpandedBlock from './Components/ExpandedBlock/ExpandedBlock';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectBlockSize } from './features/blocks/blocksSlice';
 import { setSearchTerm } from './features/searchBar/searchBarSlice';
+import { selectSearchLoading } from './features/reddit/redditSlice';
 
 function App() {
   const dispatch = useDispatch();
   const blockSize = useSelector(selectBlockSize);
+  const isLoading = useSelector(selectSearchLoading);
   
   const menuClick = (topic) => {
     dispatch(setSearchTerm(topic));
@@ -32,7 +34,8 @@ function App() {
       <SearchBar />
       <br></br>
       <div className="blockContainer" >
-        <BlockContainer />
+        {isLoading && <h3>Loading...</h3>}
+        {!isLoading && <BlockContainer />}
       </div>
       {blockSize === 'large' && <ExpandedBlock /> }
     </div>

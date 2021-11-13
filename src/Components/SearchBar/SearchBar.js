@@ -3,6 +3,7 @@ import { setSearchResults } from "../../features/searchBar/searchBarSlice";
 import { useDispatch } from "react-redux";
 import { useState } from 'react';
 import Reddit from '../../util/Reddit';
+import { fetchSearchResults, setPosts } from "../../features/reddit/redditSlice";
 
 export default function SearchBar() {
     const dispatch = useDispatch();
@@ -11,10 +12,10 @@ export default function SearchBar() {
     
     const handleClick = (e) => {
         e.preventDefault();
-        //Reddit.getAccessToken();
-        Reddit.getSearchResults(searchTerm, searchType).then( results => dispatch(setSearchResults(Object.values(results))));
+        dispatch(fetchSearchResults(searchTerm));
+        //Reddit.getSearchResults(searchTerm, searchType).then( results => dispatch(setSearchResults(Object.values(results))));
     }
-    /**/
+
     return(
         <div>
             <h3>Search Reddit</h3>

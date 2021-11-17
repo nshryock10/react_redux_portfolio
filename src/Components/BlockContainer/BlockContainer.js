@@ -3,22 +3,17 @@ import PreviewBlock from '../PreviewBlock/PreviewBlock';
 import './BlockContainer.css';
 import { useSelector } from 'react-redux';
 //import { selectSearchResults } from '../../features/searchBar/searchBarSlice';
-import { selectSearchLoading, selectSearchResults } from '../../features/reddit/redditSlice';
+import { selectSearchResults } from '../../features/reddit/redditSlice';
 
-export default function BlockContainer (props) {
-    //const results = props.results;
-    //const searchResults = useSelector(selectSearchResults);
+export default function BlockContainer () {
     const results = useSelector(selectSearchResults);
 
-    return results.map( result => {
-        return (
-            <div >
-                
+    return results.map( (result, index) => {
+           return (
+            <div className="col">
                 <PreviewBlock
                     key={result.data.id}
                     result={result} />
-             </div> 
-            
-        )}
-    )
+             </div> )
+        })
 }

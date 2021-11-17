@@ -17,7 +17,6 @@
     z-index: 4;
     overflow: scroll;
 }
-
 .img {
     position: relative;
     margin: 0 auto;
@@ -27,4 +26,8 @@
     color: white;
     max-width: 80%;
     height: auto;
+}
+
+.user:hover {
+    color: red;
 }

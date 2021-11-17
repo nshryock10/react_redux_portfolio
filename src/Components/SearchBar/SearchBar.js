@@ -1,19 +1,21 @@
 import React from "react";
-import { setSearchResults } from "../../features/searchBar/searchBarSlice";
-import { useDispatch } from "react-redux";
-import { useState } from 'react';
-import Reddit from '../../util/Reddit';
-import { fetchSearchResults, setPosts } from "../../features/reddit/redditSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { fetchSearchResults, fetchRedditPosts, selectCategory } from "../../features/reddit/redditSlice";
 
 export default function SearchBar() {
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('');
     const [searchType, setSearchType] = useState('general');
+    const category = useSelector(selectCategory);
+    
+    useEffect(() => {
+        dispatch(fetchRedditPosts(category))
+    },[dispatch, category])
     
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(fetchSearchResults(searchTerm));
-        //Reddit.getSearchResults(searchTerm, searchType).then( results => dispatch(setSearchResults(Object.values(results))));
     }
 
     return(

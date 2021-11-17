@@ -3,6 +3,7 @@ import './Comments.css';
 import { decode } from '../../utils/utils';
 
 export default function Comments ({comments}) {
+    
     return comments.map( comment => {
             return (
                 <div className="comments-container">

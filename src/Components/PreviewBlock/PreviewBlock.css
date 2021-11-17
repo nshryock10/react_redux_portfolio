@@ -1,17 +1,37 @@
 .blockBox {
-    position: relative;
-    display: inline-block;
-    border: black 2px solid;
-    width: 300px;
-    height: 300px;
+
+    min-width: 33%;
+    max-height: 400px;
     margin: 10px;
     background-color: white;
-} 
+    border-radius: 10px;
+    box-shadow: inset 0 0 20px rgba(179, 178, 178, 0.534);
+    box-shadow: 0 0 10px rgba(70, 70, 70, 0.534);
+    text-align: left;
+    transition: transform .25s;
+    box-sizing: border-box;
+}
+
+.blockBox:hover{
+    transform: scale(1.05);
+}
 
 .content-container {
-    display: flex;
-    flex-direction: column;
+    max-height: 200px;
+    overflow: hidden;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.author {
     text-align: left;
+}
+
+.author:hover{
+    color: black;
+}
+.subreddit {
+    text-align: right;
 }
 .noImgTitle {
     white-space: wrap;
@@ -32,13 +52,41 @@
     font-size: 16px;
 }
 
+.imgTitle, .noImgTitle {
+    margin: 5px 15px;
+}
 .img-small{
     height: auto;
     max-width: 250px;
 }
-.video-container {
-    height: auto;
+.post-info{
+    text-align: left;
+    margin-left: 10px;
+}
+.post-info h3{
+    margin-left: 10px;
+    color: red;
+    font-size: 14px;
+    display: inline-block;
+    text-transform: lowercase;
+}
+.video-container video{
     max-width: 250px;
+    height: auto;
+    
+}
+.vote-container *{
+    display: inline-block;
+}
+.vote-container p{
+    margin-left: 5px;
+    margin-right: 10px;
+    font-style: bold;
+    font-size: 12px;
+}
+
+.chevron-up {
+    margin-left: 10px;
 }
 
 .youtube-container {

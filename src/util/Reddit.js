@@ -5,7 +5,7 @@ const urlR = 'https://www.reddit.com/r/'; //search for specific subreddit
 const urlU = 'https://www.reddit.com/user/'; //search for specific user
 //const url2 = 'https://www.reddit.com/dev/api#GET_search/r/';
 
-//Define necessary endpointn vairables
+/*//Define necessary endpointn vairables
 let accessToken = '';
 const client_id = 'G_htzW2QgFZZNwoS1iNYYQ';
 const client_secret = 'mYZ02tgrmiYBB2Ii3EIT67tvwJMCsg';
@@ -16,12 +16,11 @@ const state = 'sdhfkljgshdlkhflkjghdflkjh';
 const scope = 'read';
 
 //Define search variables
-let filterType = 'hot';
+let filterType = 'hot'; */
 
-//Get access token
 const Reddit = {
 
-    getPostComments(searchTerm, id) {
+    async getPostComments(searchTerm, id) {
         return fetch(`${urlR}${searchTerm}/comments/${id}.json`).then(response => {
             return response.json()
         }).then(jsonResponse => {
@@ -34,11 +33,29 @@ const Reddit = {
             })
     },
 
-    getSearchResults(searchTerm, searchType) {
-        //accessToken = Spotify.getAccessToken();
-        let endpoint;        
-        searchType = 'hot';
+    async getRedditPosts (searchTerm) {
+        const response = await fetch(`${urlG}${searchTerm}.json`);
+        const json = await response.json();
+        return json.data.children.map(post => ({data: post.data}))
+    },  
+
+    async getUserSearch(searchTerm){
+        let endpoint = `${urlU}${searchTerm}/hot.json`;
+        return fetch(endpoint)
+        .then(response => {
+            return response.json()
+        }).then(jsonResponse => {
+            
+            return jsonResponse.data.children.map(
+                result =>( { data: result.data }));
+        });
+    },
+
+    async getSearchResults(searchTerm, searchType) {
+
+        let endpoint;      
         //Switch url endpoint based on drop down
+        console.log(searchType)
         switch(searchType) {
             case 'general':
                 endpoint = `${urlG}${searchTerm}/search.json?q=${searchTerm}&type=link=`;
@@ -53,9 +70,6 @@ const Reddit = {
                 endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
                 break;
         }
-
-
-
         return fetch(endpoint)
         .then(response => {
             return response.json()

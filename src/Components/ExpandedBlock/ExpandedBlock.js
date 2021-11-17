@@ -4,27 +4,38 @@ import './ExpandedBlock.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
 import { decode, getVideoURL } from '../../utils/utils';
-import Reddit from '../../util/Reddit';
-import { setComments, setCommentVisible, selectComments, selectSeeComments } from '../../features/comments/commentsSlice';
 import Comments from '../Comments/Comments';
+import {selectCommentsLoading, 
+        selectComments, 
+        fetchComments, 
+        selectCommentsVisible, 
+        setCommentsVisible,
+        fetchUserSearch } from '../../features/reddit/redditSlice';
 
 
 export default function ExpandedBlock(props) {
     const dispatch = useDispatch();
     const data = useSelector(selectBigBlockInfo);
     const comments = useSelector(selectComments);
-    const commentVisible = useSelector(selectSeeComments)
+    const commentsLoading = useSelector(selectCommentsLoading);
+    const commentsVisible = useSelector(selectCommentsVisible);
     const post = data.data;
 
 
     const handleClose = () => {
         dispatch(setSize('small'));
-        dispatch(setCommentVisible(true));
+        dispatch(setCommentsVisible(false));
     }
 
-    const handleCommentCick = async() => {
-        dispatch(setCommentVisible(!commentVisible))
-        await Reddit.getPostComments(post.subreddit, post.id).then(comments => dispatch(setComments(Object.values(comments))))
+    const handleCommentCick = () => {
+        const subreddit = post.subreddit;
+        const id = post.id;
+        dispatch(setCommentsVisible(true));
+        dispatch(fetchComments({subreddit, id}));        
+    }
+
+    const handleUserClick = (user) => {
+        dispatch(fetchUserSearch(user));
     }
 
     return (
@@ -33,7 +44,7 @@ export default function ExpandedBlock(props) {
                 <button onClick={handleClose}>Close</button>
                 <h2>{data.data.title}</h2>
                 <span>
-                    <h3 className="post-info user">u/{post.author}</h3>
+                    <h3 className="post-info user" onClick={() => handleUserClick(post.author)}>u/{post.author}</h3>
                     <h3 className="post-info reddit">r/{post.subreddit}</h3>
                 </span>
                 <div className="vote-container" >
@@ -44,7 +55,7 @@ export default function ExpandedBlock(props) {
                 </div>
                 
                 <i className="bi bi-chevron-down icon vote-down"></i>
-                <div className='content-container'>
+                <div className='big-content-container'>
 
                     {//Post content link
                         post.post_hint !=='link' && 
@@ -112,7 +123,7 @@ export default function ExpandedBlock(props) {
                                     autoPlay
                                     loop
                                 ></video><br/>
-                                <a href={post.url}>{post.url}</a>
+                                <a href={post.url}>See Video</a>
                             </div>
                         )}
                     
@@ -142,6 +153,7 @@ export default function ExpandedBlock(props) {
                     }
 
                     {//Youtube video
+                        post.domain.includes('yout') && 
                         <div className="youtube-container" >
                             <iframe
                                 src={getVideoURL(post.url)}
@@ -155,8 +167,9 @@ export default function ExpandedBlock(props) {
                     }
                 </div>
                 <div className="comment-block">
-                   <h3 onClick={handleCommentCick} >See Comments</h3> 
-                   {commentVisible && <Comments comments={comments} />}
+                   <h3 onClick={handleCommentCick} >See Comments</h3>
+                   {commentsLoading && <h4>Loading Comments...</h4>}
+                   {commentsVisible && <Comments comments={comments}/>}
                 </div>
                 
             </div>

@@ -1,8 +1,10 @@
 import React from 'react';
+import * as Icon from 'react-bootstrap-icons';
 import './PreviewBlock.css';
 import { useDispatch } from 'react-redux';
 import { setBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
 import { getVideoURL } from '../../utils/utils';
+import { fetchUserSearch } from '../../features/reddit/redditSlice';
 
 export default function PreviewBlock (props) {
     const dispatch = useDispatch();
@@ -11,7 +13,12 @@ export default function PreviewBlock (props) {
     //Sets size to 'large' and translates block info to expanded component
     const handleClick = () => {
         dispatch(setSize('large'));
-        dispatch(setBigBlockInfo({data: props.result.data }))
+        dispatch(setBigBlockInfo({data: props.result.data }));        
+    }
+
+    const handleUserClick = (user) => {
+        dispatch(fetchUserSearch(user));
+        dispatch(setSize('small'));
     }
 
     return (
@@ -35,9 +42,7 @@ export default function PreviewBlock (props) {
                 {//Post Video
                     post.is_video &&
                     post.media &&
-                    (
-                        <div className="video-container"
-                            style={{'--aspect-ratio':'3/4'}}>
+                    (<div className="video-container">
                             <video
                                 className="video"
                                 src={post.media.reddit_video.fallback_url}
@@ -45,8 +50,8 @@ export default function PreviewBlock (props) {
                                 autoPlay
                                 loop
                             ></video>
-                        </div>
-                    )}
+                    </div>)
+                }
 
                 {//Gif content
                     !post.media_embed.content &&
@@ -64,7 +69,8 @@ export default function PreviewBlock (props) {
                 )}
 
                 {//Youtube video
-                    <div className="youtube-container" >
+                    post.domain.includes('yout') && 
+                    (<div className="youtube-container" >
                         <iframe
                             src={getVideoURL(post.url)}
                             title="youtube video player"
@@ -73,10 +79,19 @@ export default function PreviewBlock (props) {
                             allowFullScreen
                             load="lazy"
                         ></iframe>
-                    </div>
+                    </div>)
                 }
                 </div>
-            <span><h3 className='author'>u/{props.result.data.author}</h3><h3 className='subreddit'>r/{props.result.data.subreddit}</h3></span>
+            <div className="post-info">
+                <h3 className='info author' onClick={() => handleUserClick(post.author)}>u/{props.result.data.author}</h3>
+                <h3 className='info subreddit'>r/{props.result.data.subreddit}</h3>
+                <div className="vote-container" >
+                   <Icon.ChevronUp className="chevron-up"/>
+                    <p>{post.ups}</p>
+                    <Icon.ChevronDown />
+                    <p>{post.downs}</p> 
+                </div>
+            </div>
         </div>        
     );
 }

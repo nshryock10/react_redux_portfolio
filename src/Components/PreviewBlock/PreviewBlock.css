@@ -1,12 +1,15 @@
 .blockBox {
-
     min-width: 33%;
     max-height: 400px;
     margin: 10px;
     background-color: white;
     border-radius: 10px;
     box-shadow: inset 0 0 20px rgba(179, 178, 178, 0.534);
+    -webkit-box-shadow: inset 0 0 20px rgba(179, 178, 178, 0.534);
+    -moz-box-shadow: inset 0 0 20px rgba(179, 178, 178, 0.534);
     box-shadow: 0 0 10px rgba(70, 70, 70, 0.534);
+    -webkit-box-shadow: 0 0 10px rgba(70, 70, 70, 0.534);
+    -moz-box-shadow: 0 0 10px rgba(70, 70, 70, 0.534);
     text-align: left;
     transition: transform .25s;
     box-sizing: border-box;
@@ -19,7 +22,7 @@
 .content-container {
     max-height: 200px;
     overflow: hidden;
-    justify-content: center;
+    width: 90%;
     margin: 0 auto;
 }
 

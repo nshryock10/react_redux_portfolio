@@ -77,11 +77,13 @@ nav h1 {
 
 .blockContainer {
   position: relative;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  background-color: aquamarine;
+  margin: 20px auto;
+  background-color: rgb(224, 224, 224);
   padding: 15px;
-  width: 80%;
+  width: 85%;
+  min-height: 500px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
 }

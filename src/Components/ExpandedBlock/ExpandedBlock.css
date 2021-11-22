@@ -1,21 +1,93 @@
 
 .bigBlock {
+    background-color: rgb(255, 255, 255);
+    color: rgb(54, 54, 54);
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.big-block-content {
     position: relative;
     margin: 0 auto;
-    height: 100vh;
-    width: 60%;
-    background-color: bisque;
+    height: 100%;
+    width: 70%;
+    background-color: rgb(224, 224, 224);
+    padding: 20px;
     overflow: scroll;
+    border-radius: 10px;
 }
-
+.blockMediaContainer {
+    width: 60%;
+    margin: 0 auto;
+}
 .bigBlockContainer {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.308);
+    background-color: rgba(0, 0, 0, 0.363);
     width: 100%;
     z-index: 4;
     overflow: scroll;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 40px;
+}
+.block-close{
+    right:0;
+    left: 0;
+    width: 70%;
+    height: 40px;
+    margin: 0 auto;
+    padding: 10px 40px;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    text-align: right;
+}
+.block-close button {
+    align-content: right;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    font-weight: 500;
+}
+.block-close button:hover {
+    align-content: right;
+    background-color: rgba(0, 0, 0, 0);
+    color: red;
+}
+.big-vote-container {
+    text-align: left;
+    margin: 0;
+}
+.big-vote-container *{
+    display: inline-block;
+    font-size: 18px;
+}
+.big-vote-container p{
+    vertical-align: bottom;
+    margin: 0;
+    margin-left: 5px;
+}
+.chevron {
+    vertical-align: center;
+    margin-left: 15px;
+}
+.comment-icon{
+    margin-right: 15px;
+}
+.comment-icon:hover{
+    color: red;
+}
+.content-footer{
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.content-footer h3 {
+    margin: 0;
 }
 .img {
     position: relative;
@@ -27,7 +99,42 @@
     max-width: 80%;
     height: auto;
 }
-
-.user:hover {
+.post-info-container {
+    text-align: left;
+}
+.reddit {
+    font-size: 18px;
     color: red;
+}
+.reddit:hover {
+    color: rgb(49, 49, 49);
+}
+.user {
+    font-size: 14px;
+    font-weight: 400;
+    color: red;
+    margin-top: 1px !important;
+}
+.user:hover {
+    color: rgb(49, 49, 49);
+}
+.x-lg{
+    width: 18px;
+    height: 18px;
+    font-weight: 1200;
+    vertical-align: bottom;
+}
+
+/** Scroll bar **/
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 198, 198);
+    border-radius: 10px;
 }

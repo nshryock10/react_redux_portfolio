@@ -1,4 +1,5 @@
 import './App.css';
+import * as Icon from 'react-bootstrap-icons';
 import SearchBar from './Components/SearchBar/SearchBar';
 import BlockContainer from './Components/BlockContainer/BlockContainer';
 import ExpandedBlock from './Components/ExpandedBlock/ExpandedBlock';
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <div className="header">
         <nav>
+            <Icon.Reddit />
             <h1>ReddLite</h1>
             <div className="drop-down">
               <h3>TOPICS</h3>

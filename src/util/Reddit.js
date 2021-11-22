@@ -31,6 +31,7 @@ const Reddit = {
                     return null;
                 }
             })
+            
     },
 
     async getRedditPosts (searchTerm) {

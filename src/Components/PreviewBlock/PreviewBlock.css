@@ -36,6 +36,9 @@
 .subreddit {
     text-align: right;
 }
+.subreddit:hover{
+    color: black;
+}
 .noImgTitle {
     white-space: wrap;
     overflow: hidden;

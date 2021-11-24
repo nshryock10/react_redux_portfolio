@@ -6,11 +6,14 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 2s linear;
   }
 }
 
@@ -39,18 +42,30 @@
 }
 
 .header {
-  min-height: 75px;
+  background-color: white;
+  z-index: 6;
+  width: 100%;
+  top: 0;
+  margin: 0 auto;
+  padding: 10px;
 }
-
 nav h1, nav h3{
   display: inline-block;
   color: red;
 }
 nav h1 {
-  position: relative;
-  float: left;
-  margin-left: 50px;
+  margin-left: 20px;
+  vertical-align: bottom;
+  margin-bottom: 0;
 }
+.reddit-logo {
+  display: inline-block;
+  color: red;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
 
 .drop-down {
   position: relative;
@@ -87,3 +102,67 @@ nav h1 {
   flex-wrap: wrap;
   text-align: center;
 }
+.blockContainer h3{
+  margin: 0 auto;
+}
+
+.topics-bar{
+  background-color: rgb(224, 224, 224);
+  width: 85%;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 30px;
+
+}
+.topics-bar ul{
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: inherit;
+}
+.topics-bar li{
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  font-weight: 800;
+  background-color: red;
+  margin: 0 5px;
+  border-radius: 22.5px;
+}
+.topics-bar li:hover{
+  box-shadow: 0 0 5px red;
+  -webkit-box-shadow: 0 0 5px red;
+  -moz-box-shadow: 0 0 5px red;
+}
+
+/** Mobile Styling **/
+
+.mobile-nav {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .topics-bar{
+    display: none;
+  }
+  .mobile-nav{
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .topics-bar{
+    display: none;
+  }
+  .mobile-nav{
+    display: inline-block;
+    margin: 0 20px;
+  }
+  .dropdown{
+    background-color: transparent;
+    color: red;
+  }
+}
+

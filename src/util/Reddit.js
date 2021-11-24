@@ -35,42 +35,26 @@ const Reddit = {
     },
 
     async getRedditPosts (searchTerm) {
-        const response = await fetch(`${urlG}${searchTerm}.json`);
+        const response = await fetch(`${urlG}${searchTerm}.json?limit=100`);
         const json = await response.json();
         return json.data.children.map(post => ({data: post.data}))
     },  
 
     async getUserSearch(searchTerm){
-        let endpoint = `${urlU}${searchTerm}/hot.json`;
+        let endpoint = `${urlU}${searchTerm}/hot.json?limit=100`;
         return fetch(endpoint)
         .then(response => {
             return response.json()
         }).then(jsonResponse => {
-            
-            return jsonResponse.data.children.map(
+                return jsonResponse.data.children.map(
                 result =>( { data: result.data }));
+            
         });
     },
 
-    async getSearchResults(searchTerm, searchType) {
-
-        let endpoint;      
-        //Switch url endpoint based on drop down
-        console.log(searchType)
-        switch(searchType) {
-            case 'general':
-                endpoint = `${urlG}${searchTerm}/search.json?q=${searchTerm}&type=link=`;
-                break;
-            case 'subreddit':
-                endpoint = `${urlR}${searchTerm}/hot.json?limit=100?`;
-                break;
-            case 'user':
-                endpoint = `${urlU}${searchTerm}/hot.json`;
-                break;
-            default:
-                endpoint = `${urlR}${searchTerm}/hot.json?limit=100`;
-                break;
-        }
+    async getSearchResults(searchTerm) {
+        let endpoint;
+        endpoint= `${urlR}${searchTerm}/hot.json?limit=100`;
         return fetch(endpoint)
         .then(response => {
             return response.json()

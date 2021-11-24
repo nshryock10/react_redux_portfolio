@@ -4,7 +4,7 @@ import './PreviewBlock.css';
 import { useDispatch } from 'react-redux';
 import { setBigBlockInfo, setSize } from '../../features/blocks/blocksSlice';
 import { getVideoURL } from '../../utils/utils';
-import { fetchUserSearch } from '../../features/reddit/redditSlice';
+import { fetchUserSearch, fetchSearchResults } from '../../features/reddit/redditSlice';
 
 export default function PreviewBlock (props) {
     const dispatch = useDispatch();
@@ -18,7 +18,10 @@ export default function PreviewBlock (props) {
 
     const handleUserClick = (user) => {
         dispatch(fetchUserSearch(user));
-        dispatch(setSize('small'));
+    }
+
+    const handleRedditClick = (subreddit) => {
+        dispatch(fetchSearchResults(subreddit))
     }
 
     return (
@@ -84,7 +87,7 @@ export default function PreviewBlock (props) {
                 </div>
             <div className="post-info">
                 <h3 className='info author' onClick={() => handleUserClick(post.author)}>u/{props.result.data.author}</h3>
-                <h3 className='info subreddit'>r/{props.result.data.subreddit}</h3>
+                <h3 className='info subreddit' onClick={()=> handleRedditClick(post.subreddit)}>r/{props.result.data.subreddit}</h3>
                 <div className="vote-container" >
                    <Icon.ChevronUp className="chevron-up"/>
                     <p>{post.ups}</p>

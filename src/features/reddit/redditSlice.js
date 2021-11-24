@@ -9,7 +9,8 @@ const initial_state = {
     error: false,
     searchLoading: false,
     commentsLoading: false,
-    selectedCategory: '/top'
+    selectedCategory: '/top',
+    searchType: 'subreddit'
 }
 
 export const fetchSearchResults = createAsyncThunk(
@@ -24,6 +25,7 @@ export const fetchRedditPosts = createAsyncThunk(
     'reddit/fetchRedditPosts',
     async (searchTerm) => {
         const data = Reddit.getRedditPosts(searchTerm);
+        console.log(searchTerm)
         return data;
     }
 )
@@ -64,6 +66,9 @@ const redditSlice = createSlice({
 
         setCommentsVisible: (state, action) => {
             state.commentsVisible = action.payload;
+        },
+        setSearchType: (state, action) => {
+            state.searchType = action.payload;
         }
     },
     extraReducers: {
@@ -75,7 +80,6 @@ const redditSlice = createSlice({
             state.searchLoading = false;
             state.error = false;
             state.searchResults = action.payload;
-            console.log(state.searchResults);
         },
         [fetchSearchResults.rejected]: state => {
             state.searchLoading = false;
@@ -124,7 +128,7 @@ const redditSlice = createSlice({
 })
 
 //Define actions
-export const { setPosts, setComments, setCategory, setCommentsVisible} = redditSlice.actions;
+export const { setPosts, setComments, setCategory, setCommentsVisible, setSearchType} = redditSlice.actions;
 //Define selectors
 export const selectSearchResults = state => state.reddit.searchResults;
 export const selectComments = state => state.reddit.comments;
@@ -133,5 +137,6 @@ export const selectError = state => state.reddit.error;
 export const selectSearchLoading = state => state.reddit.searchLoading;
 export const selectCommentsLoading = state => state.reddit.commentsLoading;
 export const selectCategory = state => state.reddit.selectedCategory;
+export const selectSearchType = state => state.reddit.searchType;
 //Export reducers
 export default redditSlice.reducer;

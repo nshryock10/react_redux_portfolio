@@ -11,7 +11,7 @@ import {selectCommentsLoading,
         selectCommentsVisible, 
         setCommentsVisible,
         fetchUserSearch, 
-        fetchRedditPosts} from '../../features/reddit/redditSlice';
+        fetchSearchResults} from '../../features/reddit/redditSlice';
 
 
 export default function ExpandedBlock(props) {
@@ -32,12 +32,11 @@ export default function ExpandedBlock(props) {
         const subreddit = post.subreddit;
         const id = post.id;
         dispatch(setCommentsVisible(true));
-        dispatch(fetchComments({subreddit, id}));     
-        console.log(comments)   
+        dispatch(fetchComments({subreddit, id}));
     }
 
     const handleRedditClick = (subreddit) => {
-        dispatch(fetchRedditPosts(subreddit))
+        dispatch(fetchSearchResults(subreddit))
     }
 
     const handleUserClick = (user) => {
@@ -180,7 +179,7 @@ export default function ExpandedBlock(props) {
                     </div>
                 </div>
                 <div className="comment-block">  
-                        {commentsLoading && <h4>Loading Comments...</h4>}
+                        {commentsLoading && <h4>{<Icon.Reddit className="reddit-logo App-logo"/>}</h4>}
                         {commentsVisible && <Comments comments={comments}/>}
                 </div>
             </div>

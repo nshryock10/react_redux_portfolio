@@ -1,13 +1,20 @@
 import React from "react";
+import './SearchBar.css';
+import * as Icon from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
-import { fetchSearchResults, fetchRedditPosts, selectCategory } from "../../features/reddit/redditSlice";
+import { fetchSearchResults, 
+        fetchRedditPosts, 
+        fetchUserSearch, 
+        selectCategory,
+        selectSearchType,
+        setSearchType } from "../../features/reddit/redditSlice";
 
 export default function SearchBar() {
     const dispatch = useDispatch();
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchType, setSearchType] = useState('general');
     const category = useSelector(selectCategory);
+    const searchType = useSelector(selectSearchType);
     
     useEffect(() => {
         dispatch(fetchRedditPosts(category))
@@ -15,20 +22,37 @@ export default function SearchBar() {
     
     const handleClick = (e) => {
         e.preventDefault();
-        dispatch(fetchSearchResults(searchTerm));
+        switch(searchType) {
+            case 'subreddit':
+                dispatch(fetchSearchResults(searchTerm));
+                break;
+            case 'user':
+                dispatch(fetchUserSearch(searchTerm));
+                break;
+            default:
+                dispatch(fetchSearchResults(searchTerm));
+                break;
+        }
+        
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        const searchType = e.target.value;
+        console.log(searchType);
+        dispatch(setSearchType(searchType));
     }
 
     return(
         <div>
-            <h3>Search Reddit</h3>
             <form onSubmit={handleClick} > 
-                <select name="searchType" id="searchType" onChange={(e) => setSearchType(e.currentTarget.value)}>
+                <button >{<Icon.Search  className="search-icon"/>}</button>
+                <select name="searchType" id="searchType" onChange={(e) => handleChange(e)}>
                   <option value="subreddit">r/</option>
                   <option value="user">u/</option>
-                  <option value="general">all</option>
                 </select>
-                <input onChange={(e) => setSearchTerm(e.currentTarget.value)}></input>
-                <button >Submit</button>
+                <input placeholder="Search Reddit..." onChange={(e) => setSearchTerm(e.currentTarget.value)}></input>
+                
                 
             </form>
         </div>

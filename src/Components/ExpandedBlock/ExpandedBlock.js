@@ -56,7 +56,6 @@ export default function ExpandedBlock(props) {
                     </div>
                     <h2>{data.data.title}</h2>
                     
-                    <i className="bi bi-chevron-down icon vote-down"></i>
                     <div className='big-content-container'>
 
                         {//Post content link

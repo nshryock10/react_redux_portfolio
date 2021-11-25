@@ -147,22 +147,46 @@ nav h1 {
     display: none;
   }
   .mobile-nav{
-    display: block;
-  }
-
-}
-
-@media screen and (max-width: 600px) {
-  .topics-bar{
-    display: none;
-  }
-  .mobile-nav{
     display: inline-block;
     margin: 0 20px;
   }
   .dropdown{
-    background-color: transparent;
-    color: red;
-  }
-}
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+    list-style-type: none;
+    padding: 5px 15px;
+    position: absolute;
 
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-2em);
+    z-index: -1;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .dropdown ul{
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .mobile-nav:focus .dropdown,
+  .mobile-nav:focus-within .dropdown,
+  .mobile-nav:hover .dropdown{
+    visibility: visible;
+    opacity: 1;
+    z-index: 7;
+    transform: translateY(0%);
+    transition-delay: 0s, 0s, 0.3s;
+  }
+  .mobile-menu-list {
+    color: red;
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    transition: transform .55s;
+  }
+  .mobile-menu-list:hover {
+    transform: rotate(-90deg);
+  }
+
+}

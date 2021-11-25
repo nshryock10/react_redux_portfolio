@@ -139,3 +139,59 @@
     background: rgb(201, 198, 198);
     border-radius: 10px;
 }
+
+/** Mobile Styles **/
+@media screen and (max-width: 800px) {
+    .bigBlockContainer{
+        padding-top: 45px;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .big-block-content{
+        width: 90%;
+    }
+    .big-block-content h2{
+        font-size: 24px;
+    }
+    .reddit{
+        font-size: 18px
+    }
+    .content-footer p{
+        font-size: 18px;
+    }
+    .img {
+        width: 75%;
+    }
+    .video-container video{
+       max-width: 85%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bigBlockContainer{
+        padding-top: 45px;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .big-block-content{
+        width: 90%;
+    }
+    .big-block-content h2{
+        font-size: 16px;
+    }
+    .reddit{
+        font-size: 14px
+    }
+    .content-footer p{
+        font-size: 16px;
+    }
+    .img {
+        width: 85%;
+    }
+    .video-container video{
+        width: 85%;
+    }
+
+}

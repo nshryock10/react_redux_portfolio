@@ -17,14 +17,8 @@ function App() {
     dispatch(fetchSearchResults(searchTerm));
   }
 
-  return (
-    <div className="App">
-      <div className="header">
-        <nav className="nav">
-          <Icon.Reddit className="reddit-logo" />
-          <h1>reddLite</h1>
-          <div className="mobile-nav">
-            <Dropdown className="dropdown">
+  /*
+  <Dropdown className="dropdown">
               <Dropdown.Toggle variant="success">
                 {<Icon.List className="mobile-menu-list"/>}
               </Dropdown.Toggle>
@@ -49,6 +43,23 @@ function App() {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+  */
+  return (
+    <div className="App">
+      <div className="header">
+        <nav className="nav">
+          <Icon.Reddit className="reddit-logo" />
+          <h1>reddLite</h1>
+          <div className="mobile-nav">
+            <Icon.List className="mobile-menu-list"/>
+            <ul className="dropdown">
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("aww")}>aww</li>
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("funny")}>funny</li>
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("pics")}>pics</li>
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("politics")}>politics</li>
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("news")}>news</li>
+              <li className="mobile-menu-item"onClick={()=>handleTopicClick("sports")}>sports</li>
+            </ul>
           </div>    
         </nav>
       </div>

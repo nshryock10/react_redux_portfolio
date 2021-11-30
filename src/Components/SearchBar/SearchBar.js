@@ -18,7 +18,7 @@ export default function SearchBar() {
     
     useEffect(() => {
         dispatch(fetchRedditPosts(category))
-    },[dispatch, category])
+    },[])
     
     const handleClick = (e) => {
         e.preventDefault();

@@ -17,33 +17,6 @@ function App() {
     dispatch(fetchSearchResults(searchTerm));
   }
 
-  /*
-  <Dropdown className="dropdown">
-              <Dropdown.Toggle variant="success">
-                {<Icon.List className="mobile-menu-list"/>}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item  className="mobile-menu-item" onClick={()=>handleTopicClick("aww")}>
-                  aww
-                </Dropdown.Item>
-                <Dropdown.Item className="mobile-menu-item" onClick={()=>handleTopicClick("funny")}>
-                  funny
-                </Dropdown.Item>
-                <Dropdown.Item className="mobile-menu-item" onClick={()=>handleTopicClick("pics")}>
-                  pics
-                </Dropdown.Item>
-                <Dropdown.Item className="mobile-menu-item" onClick={()=>handleTopicClick("politics")}>
-                  politics
-                </Dropdown.Item>
-                <Dropdown.Item className="mobile-menu-item"onClick={()=>handleTopicClick("news")}>
-                  news
-                </Dropdown.Item>
-                <Dropdown.Item className="mobile-menu-item" onClick={()=>handleTopicClick("sports")}>
-                  sports
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-  */
   return (
     <div className="App">
       <div className="header">

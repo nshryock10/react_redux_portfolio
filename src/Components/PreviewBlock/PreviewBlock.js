@@ -52,6 +52,7 @@ export default function PreviewBlock (props) {
                                 controls
                                 autoPlay
                                 loop
+                                playsinline
                             ></video>
                     </div>)
                 }
@@ -68,6 +69,7 @@ export default function PreviewBlock (props) {
                             autoPlay
                             muted
                             loop
+                            playsinline
                         ></video>
                 )}
 
@@ -81,6 +83,7 @@ export default function PreviewBlock (props) {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             load="lazy"
+                            playsinline
                         ></iframe>
                     </div>)
                 }

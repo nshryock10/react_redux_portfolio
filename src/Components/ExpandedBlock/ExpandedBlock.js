@@ -123,7 +123,7 @@ export default function ExpandedBlock(props) {
                                         controls
                                         autoPlay
                                         loop
-                                        playsinline
+                                        playsInline
                                     ></video><br/>
                                     <a href={post.url}>See Video</a>
                                 </div>
@@ -141,7 +141,7 @@ export default function ExpandedBlock(props) {
                                     autoPlay
                                     muted
                                     loop
-                                    playsinline
+                                    playsInline
                                 ></video>
                         )}
 
@@ -165,7 +165,7 @@ export default function ExpandedBlock(props) {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     load="lazy"
-                                    playsinline
+                                    playsInline
                                 ></iframe>
                             </div>
                         }

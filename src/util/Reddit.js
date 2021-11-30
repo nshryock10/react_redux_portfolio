@@ -1,6 +1,6 @@
 //Import all necessary plugins;
 
-const urlG = 'http://www.reddit.com/'; //general search
+const urlG = 'https://www.reddit.com/'; //general search
 const urlR = 'https://www.reddit.com/r/'; //search for specific subreddit
 const urlU = 'https://www.reddit.com/user/'; //search for specific user
 //const url2 = 'https://www.reddit.com/dev/api#GET_search/r/';

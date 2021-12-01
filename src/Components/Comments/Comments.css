@@ -1,5 +1,5 @@
 .comment {
-    border-left: solid 1px red;
+    border-left: solid 1px var(--main-text-color);
     text-align: left;
     margin-left: 0.75rem;
     padding: 5px 10px;
@@ -7,7 +7,7 @@
 }
 .comments-container > .comment {
     margin-left: 1.25rem;
-    border-left: 1px red solid;
+    border-left: 1px var(--main-text-color) solid;
     margin: 2px;
     border-radius: 10px;
 }

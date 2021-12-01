@@ -55,7 +55,7 @@
 .block-close button:hover {
     align-content: right;
     background-color: rgba(0, 0, 0, 0);
-    color: red;
+    color: var(--main-text-color);
 }
 .big-vote-container {
     text-align: left;
@@ -78,7 +78,7 @@
     margin-right: 15px;
 }
 .comment-icon:hover{
-    color: red;
+    color: var(--main-text-color);
 }
 .content-footer{
     display: flex;
@@ -104,7 +104,7 @@
 }
 .reddit {
     font-size: 18px;
-    color: red;
+    color: var(--main-text-color);
 }
 .reddit:hover {
     color: rgb(49, 49, 49);
@@ -113,7 +113,7 @@
 .user {
     font-size: 14px;
     font-weight: 400;
-    color: red;
+    color: var(--main-text-color);
     margin-top: 1px !important;
 }
 .user:hover {

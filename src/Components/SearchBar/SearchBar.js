@@ -46,7 +46,7 @@ export default function SearchBar() {
     return(
         <div>
             <form onSubmit={handleClick} > 
-                <button >{<Icon.Search  className="search-icon"/>}</button>
+                <button aria-label="search">{<Icon.Search  className="search-icon"/>}</button>
                 <select name="searchType" id="searchType" onChange={(e) => handleChange(e)}>
                   <option value="subreddit">r/</option>
                   <option value="user">u/</option>
